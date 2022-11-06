@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcwncpocyashb"]
+
+[ext_resource type="Texture2D" uid="uid://b67kkdq1ifg7j" path="res://assets/PNG/Enemies/enemyRed3.png" id="1_7tr05"]
+
+[sub_resource type="Curve2D" id="Curve2D_ukb7n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, -7, 0, 0, 0, 0, 1141, 638, 0, 0, 0, 0, -2, -2, 0, 0, 0, 0, -23, -28)
+}
+point_count = 4
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ukb7n")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-3, -7)
+rotation = 0.513385
+
+[node name="Enemy" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+position = Vector2(6.05116, 4.62422)
+rotation = -0.513385
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Enemy"]
+texture = ExtResource("1_7tr05")

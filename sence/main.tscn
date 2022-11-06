@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy72hc8ku80ab"]
+
+[ext_resource type="PackedScene" uid="uid://dch0i7el06qmp" path="res://sence/Player.tscn" id="1_1so0m"]
+[ext_resource type="Script" path="res://code/Background.gd" id="1_vnpnf"]
+[ext_resource type="Texture2D" uid="uid://d045wa4m65qaf" path="res://assets/Backgrounds/blue.png" id="2_6ytqd"]
+[ext_resource type="Script" path="res://code/wall.gd" id="4_fhgsk"]
+[ext_resource type="AudioStream" uid="uid://dchxg65ou7hl5" path="res://assets/sound/GB-Shooter-A05-2(Stage4-Loop155).mp3" id="5_itdls"]
+[ext_resource type="PackedScene" uid="uid://x40wqdq3mjq" path="res://sence/weakest.tscn" id="6_wumjf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s85qi"]
+size = Vector2(1176, 26)
+
+[node name="Main" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_vnpnf")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 500)
+
+[node name="background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(579.5, 326.5)
+scale = Vector2(4.52734, 2.55078)
+texture = ExtResource("2_6ytqd")
+
+[node name="Player" parent="." instance=ExtResource("1_1so0m")]
+position = Vector2(555, 506)
+collision_mask = 5
+motion_mode = 1
+platform_floor_layers = 4294967040
+
+[node name="wall" type="Area2D" parent="."]
+position = Vector2(0, -30)
+collision_layer = 32
+collision_mask = 51
+script = ExtResource("4_fhgsk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(578, 3)
+shape = SubResource("RectangleShape2D_s85qi")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wall"]
+position = Vector2(571, 708)
+shape = SubResource("RectangleShape2D_s85qi")
+
+[node name="Main" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_itdls")
+volume_db = 10.0
+autoplay = true
+
+[node name="Type01" parent="." instance=ExtResource("6_wumjf")]

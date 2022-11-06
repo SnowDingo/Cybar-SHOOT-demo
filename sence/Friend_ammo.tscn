@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://by5eapmod1k6r"]
+
+[ext_resource type="Script" path="res://code/Friend_ammo.gd" id="1_x8vwq"]
+[ext_resource type="Texture2D" uid="uid://cgecmh42nro27" path="res://assets/PNG/Lasers/laserBlue12.png" id="2_0n8d7"]
+
+[node name="ammo" type="CharacterBody2D"]
+scale = Vector2(1.2, 0.696)
+collision_layer = 2
+collision_mask = 49
+script = ExtResource("1_x8vwq")
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(6.5, 28.5, -6.5, 28.5, -6.5, -28.5, 6.5, -28.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 1)
+texture = ExtResource("2_0n8d7")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+collision_layer = 2
+collision_mask = 49
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(6.5, 28.5, -6.5, 28.5, -6.5, -28.5, 6.5, -28.5)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

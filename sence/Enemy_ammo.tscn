@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhbn1xycdyyeq"]
+
+[ext_resource type="Script" path="res://code/Enemy_ammo.gd" id="1_m0bqe"]
+[ext_resource type="Texture2D" uid="uid://cdymqi53o4nx4" path="res://assets/PNG/Lasers/laserRed10.png" id="2_0d1le"]
+
+[node name="ammo" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_m0bqe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0d1le")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 49
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(18.5, -4.5, 16.5, -3, 16.5, 2.2, 18.5, 4.2, 18.5, 18, 5.5, 18, 3.7, 16, -1.7, 16, -3.7, 18, -18.5, 18, -18.5, 6, -15.5, 3.2, -15.5, -3, -18.5, -5.4, -18.5, -18, -4.5, -18, -2.7, -16, 3.5, -16, 5, -18, 18.5, -18)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(18.5, -4.5, 16.5, -3, 16.5, 2.2, 18.5, 4.2, 18.5, 18, 5.5, 18, 3.7, 16, -1.7, 16, -3.7, 18, -18.5, 18, -18.5, 6, -15.5, 3.2, -15.5, -3, -18.5, -5.4, -18.5, -18, -4.5, -18, -2.7, -16, 3.5, -16, 5, -18, 18.5, -18)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
